@@ -1,0 +1,54 @@
+
+public class MedianTwoSortedArray {
+
+  public double findMedianSortedArrays(int A[], int B[]) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int m = A.length;
+        int n = B.length;
+        if (m < n) return findMedian(A, B, 0, m-1, m, n);
+        else return findMedian(B, A, 0, n-1, n, m);
+    }
+
+	public double findMedian(int[] A, int[] B, int low, int high, int m, int n) {
+		// TODO Auto-generated method stub
+		// if low > high, change the side
+		if (low > high)
+			return findMedian(B,A,Math.max(0, (m+n)/2-m),Math.min(n, (m+n)/2),n,m);
+		
+        // A[i] is larger than i elements in A
+        int i = (high + low)/2; 
+        
+        // If A[i] is media of merged array, it should be larger than (m+n)/2-1 elements,
+        // therefore A[i] should be larger than (m+n)/2 - i - 1 elements in B.
+        int j = (m+n)/2 - i- 1;
+        
+        // if j>=0 and A[i]<B[j], then the median should be larger than A[i] and smaller 
+        // than B[j]. 
+        if( j>=0 && A[i]<B[j])
+        	return findMedian(A,B,i+1,high,m,n);
+        // If A[i] > B[j+1], then the median should be smaller than A[i], find in the left half.
+        // j < n-1 because j+1 <= n-1
+        else if (j < n-1 && A[i] > B[j+1])
+        	return findMedian(A,B,low,i-1,m,n);
+        else {
+            // Now we have B[j] <= A[i] <= B[j+1], but with some special cases!
+            // If total length is odd, just return A[i]
+        	if ((m+n) % 2 == 1)
+        		return A[i];
+        	// Else, we have to find the other median, which is the bigger one between A[i-1] and B[j], if they exist.
+        	
+            // If j == -1, we have reached the head of B, so there's no B[j] <= A[i], the other median must be A[i-1]
+            else if (j == -1) return (A[i] + A[i-1]) / 2.0;
+        	
+            // If i == 0, we have reached the head of A, so there's no A[i-1] <= A[i], the other median must be B[j] 
+            else if (i == 0) return (A[i] + B[j]) / 2.0;
+        	
+        	// Otherwise, the other median is the bigger one between the two.
+            else return (A[i] + Math.max(B[j], A[i-1])) / 2.0;
+        }
+		
+		
+	}
+	
+}
