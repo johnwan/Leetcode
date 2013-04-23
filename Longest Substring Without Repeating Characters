@@ -1,0 +1,42 @@
+import java.util.*;
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        
+      //find the longest substring, if meet a duplicate char, check if it same as the first char in the substring,
+    	//if so, we can replace the first char with the new one and continue; else, start a new substring.
+    	
+    	int len = 0;
+    	int max = 0;
+    	HashMap<Character,Integer> str = new HashMap<Character,Integer>();
+    	int startIndex = 0;
+    	for (int i=0; i<s.length(); i++){
+    		if (!str.containsKey(s.charAt(i))){
+    			str.put(s.charAt(i), i);
+    			len++;
+    			}
+    		else{
+    			//found a duplicate, save the state
+    			if (max < len)
+    				max = len;
+    			// begin from the duplicate
+    			int dupIndex = str.get(s.charAt(i));
+    			for (int j=dupIndex; j>=startIndex; j--){
+    				str.remove(s.charAt(j));
+    				len--;
+    				}
+    			// start the new substring
+    			 str.put(s.charAt(i), i);
+    			 len++;
+    			 startIndex = dupIndex + 1;
+    			}
+    		}
+    	//len is length of the last substring
+        if (len > max) {
+            max = len;
+        }
+		return max;
+        
+    }
+}
