@@ -1,0 +1,17 @@
+public class reverseInteger {
+    public static int reverse(int x) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+      Integer num = Math.abs(x);
+    	StringBuffer sb = new StringBuffer(num.toString());
+    	int result = x>0 ? Integer.parseInt(sb.reverse().toString()):Integer.parseInt("-"+sb.reverse().toString());
+    	
+		return result;        
+    }
+    
+    public static void main(String[] args){
+		int x = -123;
+		System.out.print(reverse(x));
+	}
+
+}
