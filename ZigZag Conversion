@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+
+
+public class zigzag_convert {
+  
+	static String convert(String text, int nRows){
+		ArrayList<StringBuilder> char_array = new ArrayList<StringBuilder>();
+		for (int k = 0; k < nRows; k++) {
+			char_array.add(new StringBuilder());
+        }
+		
+		if (nRows <= 1 || text.length() < 2)  
+            return text;
+		
+		int row = 0;
+		boolean dir = false;
+		for (int i = 0; i<text.length(); i++){			
+		if ((row == nRows-1)||(row == 0)){
+			dir = !dir;
+		}
+		
+			char_array.get(row).append(text.charAt(i));
+		
+		if (dir)
+			row++;
+		else
+			row--;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		for (StringBuilder s:char_array){
+			sb.append(s);
+		}
+		
+		return sb.toString();		
+	}
+	
+	public static void main(String[] args){
+		
+		String str = "PAYPALISHIRING";
+		System.out.print(convert(str,3));
+		
+	}
+}
