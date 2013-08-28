@@ -1,0 +1,34 @@
+import java.util.*;
+public class Solution {
+    public ArrayList<ArrayList<Integer>> threeSum(int[] a)
+   {
+    Set set = new HashSet();
+    Arrays.sort(a);
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();    
+    for (int i=0;i<a.length - 2;i++){
+     int j = i + 1;
+     int k = a.length - 1;
+     while (j<k){
+      int twosum = a[i] + a[j];
+      if (twosum + a[k] < 0 ){
+       j++;
+      }else if (twosum + a[k] > 0 ){
+       k--;
+      }else if (twosum + a[k] == 0 ){
+       ArrayList<Integer> tri = new ArrayList<Integer>();
+       tri.add(a[i]);
+       tri.add(a[j]);
+       tri.add(a[k]);
+          
+       if (set.add(tri))
+            result.add(tri);
+       j++;
+       k--;
+      }
+      
+     }
+     
+    }
+  return result;   
+   }
+}
