@@ -1,0 +1,28 @@
+public class LCP {
+    public static String longestCommonPrefix(String[] strs) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+      if (strs.length == 1)
+        return strs[0];
+      if (strs.length < 1)
+        return "";
+      String prefix = strs[0];
+      for (String s: strs){
+        int i=0;
+        if (!prefix.equals(s)){
+          for (;i<Math.min(prefix.length(),s.length());i++){
+            if (prefix.charAt(i) != s.charAt(i)){
+              break;
+            }
+          }
+        prefix = prefix.substring(0,i);
+        }
+      }
+      return prefix;
+    }
+    
+    public static void main(String args[]){
+      String[] strs = {"aa","a"};
+      System.out.println(longestCommonPrefix(strs));
+    }
+}
