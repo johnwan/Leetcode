@@ -1,0 +1,57 @@
+import java.util.*;
+public class Palindrome_Partitioning {
+    public static void main(String args[]){
+    String s = "abcbc";
+    System.out.println(is_Palindrome(s));
+    }
+  
+    public int minCut(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        return 0;
+    }
+    public static ArrayList<ArrayList<String>> partition(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        if (s.length() == 1){
+          ArrayList<String> a = new ArrayList<String>();
+          a.add(s);
+          result.add(a);
+          return result;
+        }
+        
+        for (int i=0; i<s.length();i++){
+        String str = s.substring(0,i+1);
+        if (is_Palindrome(str)){
+          if(i+1 == s.length()){
+            ArrayList<String> a = new ArrayList<String>();
+            a.add(str);
+            result.add(a);
+          }
+          else{
+            ArrayList<ArrayList<String>> temp = partition(s.substring(i+1));
+            for (ArrayList<String> a: temp){
+              a.add(0, str);
+              result.add(a);
+            }
+          }
+        }
+        }
+        return result;
+    }
+    
+    public static boolean is_Palindrome(String s){
+    int i = 0;
+    int j = s.length() - 1;
+    if(s.length() == 1 || s.length() ==0) return true;
+    while(i<j){
+    if (s.charAt(i) != s.charAt(j))
+      return false;
+    i++;
+    j--;
+    }
+    return true;
+    }    
+}
