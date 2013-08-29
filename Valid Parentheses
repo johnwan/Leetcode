@@ -1,0 +1,19 @@
+public class Solution {
+    public boolean isValid(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+      Stack<Character> stack = new Stack<Character>();
+      for (int i = 0; i< s.length(); i++){
+        char top = stack.empty() ? ' ':stack.peek();
+        char c = s.charAt(i);
+        if ((top == '(' && c == ')')||(top == '[' && c == ']')||(top == '{' && c == '}'))
+          stack.pop();
+        else
+          stack.push(c);
+      }
+      if (stack.empty())
+        return true;
+      else
+        return false;
+    }
+}
