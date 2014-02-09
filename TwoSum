@@ -1,4 +1,3 @@
-import java.util.*;
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
         // Start typing your Java solution below
@@ -16,16 +15,18 @@ public class Solution {
    {
         if (hash.containsKey(target-numbers[i]))
     	{
-    	  int j = hash.get(target-numbers[i])+1;
-    	  i++;
-    	  rs[0] = (i<j)? i : j;
-    	  rs[1] = (i<j)? j : i;
-    	  return rs;
-    	  
+    	  int j = hash.get(target-numbers[i]);
+    	  if (i != j){
+        	  i++;
+        	  j++;
+        	  rs[0] = (i<j)? i : j;
+        	  rs[1] = (i<j)? j : i;
+        	  return rs;
+    	  }
 
       }   
    }
 	return rs;
-		
+
 }
 }
