@@ -1,0 +1,34 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
+        ArrayList<ArrayList<Integer>> lists = new ArrayList<ArrayList<Integer>>();
+        createLevelList(root, lists, 0);
+        return lists;
+    }
+    
+    public void createLevelList(TreeNode root, ArrayList<ArrayList<Integer>> lists, int level){
+        if (root == null) return;
+        
+        ArrayList<Integer> list = null;
+        if (lists.size() == level){ // Level not contained in list
+            list = new ArrayList<Integer>();
+            lists.add(list);
+            
+        }
+        else{
+            list = lists.get(level);
+        }
+        
+        list.add(root.val);
+        createLevelList(root.left, lists, level + 1);
+        createLevelList(root.right, lists, level + 1);
+    }
+}
