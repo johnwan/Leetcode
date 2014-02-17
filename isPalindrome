@@ -1,0 +1,41 @@
+public class Palindrome {
+    public static boolean isPalindrome(int x) {
+        if (x < 0) return false;
+        StringBuilder sb = new StringBuilder(Integer.toString(x));
+        String ori = sb.toString();
+        String rev = sb.reverse().toString();
+        if (ori.equals(rev)){
+            return true;        	
+        }else
+        	return false;
+    }    
+    public static boolean isPalindrome1(int x) {
+        if (x < 0) return false;
+        int div = 1;
+        
+        // find how many digits
+        while (x / div >= 10){
+        	div *= 10;
+        }
+        
+        while ( x > 9){
+        	int left = x / div;
+        	int right = x % 10;
+        	if (left != right){
+        		return false;
+        	}
+        	x = (x % div) / 10;
+        	div /= 100;
+        	
+        }
+		return true;
+        
+        
+    }
+    
+    
+    public static void main(String[] args){
+    	int i = 0;
+    	System.out.println(isPalindrome1(i));
+    }
+}
