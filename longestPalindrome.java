@@ -25,6 +25,7 @@ public class Solution {
     }
 }
 Solution 3:O(n),O(n)
+http://www.felix021.com/blog/read.php?2040
 public class Solution {
     public String longestPalindrome(String s) {
         // Start typing your Java solution below
