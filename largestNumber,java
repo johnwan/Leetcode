@@ -1,0 +1,33 @@
+class largestNumberComparator implements Comparator<Integer> {
+    @Override
+    public int compare(Integer a, Integer b) {
+    	if(Integer.parseInt(""+a+b) < Integer.parseInt(""+b+a)){
+        	System.out.println(-1);
+    		return -1;
+    	}
+    	else if(Integer.parseInt(""+a+b) > Integer.parseInt(""+b+a)){
+        	System.out.println(1);
+    		return 1;
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+}
+
+public class Solution {
+    public String largestNumber(int[] num) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for(int n:num){
+			list.add(n);
+		}
+		Collections.sort(list, new largestNumberComparator());
+		Collections.reverse(list);
+        String res = "";
+        for(int n: list){
+            res += n;
+        }
+        return res.replaceFirst("^0+(?!$)", "");
+    }
+
+}
